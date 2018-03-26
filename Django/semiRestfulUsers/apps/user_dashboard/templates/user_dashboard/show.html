@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Users</title>
+
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'user_dashboard/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'user_dashboard/css/style.css' %}">
+
+    <script src="{% static 'user_dashboard/js/jquery-3.2.1.min.js' %}"></script>
+    <script src="{% static 'user_dashboard/js/main.js' %}"></script>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h2 class="title">User {{ user.id }}</h2>
+        <div class="row">
+            <div class="col-6">
+                <table class="table">
+                    <tr>
+                        <td>Full Name:</td>
+                        <td>{{ user.first_name }} {{ user.last_name }}</td>
+                    </tr>
+
+                    <tr>
+                        <td>Email:</td>
+                        <td>{{ user.email }}</td>
+                    </tr>
+
+                    <tr>
+                        <td>Created:</td>
+                        <td>{{ user.created_at }}</td>
+                    </tr>
+                </table>
+                <a href="/">Home</a> |
+                <a href="/{{ user.id }}/edit">Edit</a> |
+                <a href="/{{ user.id }}/delete">Delete</a>
+            </div>
+        </div>
+
+    </div>
+
+</body>
+
+</html>

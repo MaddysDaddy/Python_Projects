@@ -1,0 +1,27 @@
+div.plate {
+    margin-top: 2em;
+    background-color: #333;
+    color: #fff;
+}
+
+p {
+    text-align: center;
+    margin: .5em;
+}
+
+div.clock {
+    text-align: center;
+    border: 1px solid #aeaeae;
+}
+
+div.clock span {
+    display: block;
+}
+
+div.clock span.date {
+    font-size: 2em;
+}
+
+div.clock span.time {
+    font-size: 5em;
+}

@@ -1,0 +1,78 @@
+{% extends 'user_dash/base.html' %}{% block content %}
+<h2>{{ user.first_name }} {{ user.last_name }}</h2>
+<div class="row">
+    <div class="col-6">
+        <table class="table">
+            <tr>
+                <td>Registered at:</td>
+                <td>{{ user.created_at }}</td>
+            </tr>
+            <tr>
+                <td>User ID:</td>
+                <td>#{{ user.id }}</td>
+            </tr>
+            <tr>
+                <td>Email Address:</td>
+                <td>{{ user.email }}</td>
+            </tr>
+            <tr>
+                <td>Description:</td>
+                <td>{{ user.description }}</td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12">
+        <h4>Leave a message for {{ user.first_name }}:</h4>
+        <form action="{{ user.id }}/message" method="POST">
+            {% csrf_token %}
+            <div class="form-group">
+                <textarea name="message" id="message" cols="30" rows="10" class="form-control"></textarea>
+            </div>
+
+            <button class="btn btn-primary" type="submit">Post Message</button>
+        </form>
+    </div>
+</div>
+
+
+{% for post in posts %}
+<div class="row justify-content-end">
+
+    <div class="col-8 post">
+        <p>{{ post.post }}</p>
+        <div class="row">
+            <div class="col-6">
+                <span class="commenter">From {{ post.from_user.first_name }} {{ post.from_user.last_name }} at {{ post.created_at }}</span>
+            </div>
+            <div class="col-6 text-right">
+                <a href="#" class="comment-link">Reply</a>
+            </div>
+        </div>
+        <div class="row comment-form-row">
+            <div class="col-12">
+                <form action="/{{ user.id }}/comment/{{ post.id }}" method="POST">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <textarea name="comment" cols="30" rows="5" class="form-control"></textarea>
+                    </div>
+                    <div class="form-group text-right">
+                        <button class="btn btn-sm btn-secondary" type="submit">Reply</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- END POST DIV -->
+</div>
+{% if comments %}{% for comment in comments %}{% if comment.post_id == post.id %}
+<div class="row justify-content-end">
+    <div class="col-6 comment">
+        <p>{{ comment.comment }}</p>
+        <span class="commenter">{{ comment.from_user.first_name }} {{ comment.from_user.last_name }} at {{ comment.created_at }}</span>
+    </div>
+</div>
+{% endif %}{% endfor %}{% endif %} {% endfor %} {% endblock %}

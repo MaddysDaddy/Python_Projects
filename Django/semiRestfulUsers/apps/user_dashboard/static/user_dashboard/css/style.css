@@ -1,0 +1,23 @@
+h1.title,
+h2.title {
+    margin-top: 2em;
+}
+
+a.home-link:link,
+a.home-link:visited {
+    display: inline-block;
+    margin: 1em 0;
+    text-decoration: underline;
+}
+
+ul.messages {
+    list-style: none;
+    margin: .5em 0;
+    padding: 0;
+}
+
+ul.messages li {
+    padding: .5em;
+    margin-bottom: .5em;
+    border-radius: 5px;
+}

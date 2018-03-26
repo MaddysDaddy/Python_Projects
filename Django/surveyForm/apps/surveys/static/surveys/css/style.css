@@ -1,0 +1,41 @@
+html,
+body {
+    height: 100%;
+}
+
+div.flex {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+div.flex h1 {
+    text-align: center;
+}
+
+div.flex h1.success {
+    text-align: left;
+}
+
+input#rand-string {
+    text-align: center;
+}
+
+textarea {
+    resize: none;
+}
+
+.button-group {
+    margin-top: 1em;
+}
+
+div.feedback div.row {
+    border-bottom: 1px solid #aeaeae;
+    padding: .5em 0;
+}
+
+div.feedback div.row:last-child {
+    border-bottom: none;
+}

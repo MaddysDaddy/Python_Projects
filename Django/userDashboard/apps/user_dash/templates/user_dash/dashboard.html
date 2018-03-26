@@ -1,0 +1,43 @@
+{% extends 'user_dash/base.html' %}{% block content %} {% if admin %}
+<h2>Manage Users</h2>
+{% else %}
+<h2>All Users</h2>
+{% endif %}
+
+<div class="row">
+    <div class="col-12">
+        <table class="table table-striped">
+            <thead class="thead-dark">
+                <th>ID</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Created</th>
+                <th>User Level</th>
+                {% if user.user_level == 9 %}
+                <th>Actions</th>
+                {% endif %}
+            </thead>
+            <tbody>
+                {% for u in all_users %}
+                <tr>
+                    <td>{{ u.id }}</td>
+                    <td>
+                        <a href="{% url 'show_user' u.id %}">{{ u.first_name }} {{ u.last_name }}</a>
+                    </td>
+                    <td>{{ u.email }}</td>
+                    <td>{{ u.created_at }}</td>
+                    <td class="user-level">{{ u.user_level }}</td>
+                    {% if admin %}
+                    <td>
+                        <a href="{% url 'profile' u.id %}">Edit</a> |
+                        <a href="#" class="remove">Remove</a>
+                    </td>
+                    {% endif %}
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+{% endblock %}

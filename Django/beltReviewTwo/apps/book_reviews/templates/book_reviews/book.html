@@ -1,0 +1,78 @@
+{% extends 'book_reviews/base.html' %}{% block content %}
+<h2>{{ book.title }}</h2>
+{% for author in authors %}
+<h5>by {{ author.name }}</h5>
+{% endfor %}
+
+<div class="row reviews-main">
+    <div class="col-8">
+        <h3>Reviews:</h3>
+        {% for review in reviews %}
+        <div class="book-detail-review">
+            <div class="rating">
+                Rating:
+                <span class="stars">{{ review.stars }}</span>
+            </div>
+
+            <div class="review">
+                <p>
+                    <a href="{% url 'reviews:user_detail' review.reviewer.id %}">{{ review.reviewer.name }}</a> says:{{ review.review }}</p>
+                <div class="row">
+                    <span class="col-6 timestamp">{{ review.created_at }}</span>
+
+                    {% if review.reviewer.id == request.session.user %}
+                    <form action="{% url 'reviews:delete_review' book.id review.id %}" method="POST" class="col-6 delete-button text-right">
+                        {% csrf_token %}
+                        <button class="btn btn-danger">
+                            <i class="fa fa-trash" aria-hidden="true"></i> Delete Review
+                        </button>
+                    </form>
+                    {% endif %}
+                </div>
+            </div>
+
+        </div>
+        {% endfor %}
+    </div>
+
+    <div class="col-4">
+        {% if messages %}
+        <ul class="error-messages">
+            {% for message in messages %}
+            <li class="bg-warning error-msg">
+                <i class="fa fa-exclamation-circle" aria-hidden="true"></i>
+                {{ message }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+        <form action="{% url 'reviews:add_review' book.id %}" method="POST">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="/{{ book.id }}/review">Add a Review:</label>
+                <textarea name="review" cols="30" rows="10" class="form-control"></textarea>
+            </div>
+
+            <div class="form-group row">
+                <div class="col-3">
+                    <label for="Rating">Rating:</label>
+                </div>
+                <div class="col-3">
+                    <select name="stars" class="form-control">
+                        <option value=""></option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                    </select>
+                </div>
+                <div class="col-2">
+                    stars.
+                </div>
+            </div>
+
+            <button class="btn btn-primary" type="submit">Submit Review</button>
+        </form>
+    </div>
+</div>
+{% endblock %}

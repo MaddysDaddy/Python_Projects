@@ -1,0 +1,50 @@
+{% extends 'book_reviews/base.html' %}{% block content %}
+
+<h4 class="welcome-msg">Welcome, {{ user.alias }}</h4>
+
+<div class="row">
+    <div class="col-8">
+        <h3>Recent Book Reviews:</h3>
+
+        {% for book in books %}
+        <div class="book">
+            <a href="{% url 'reviews:book_detail' book.id %}">
+                <h5>{{ book.title }}</h5>
+            </a>
+            {% for review in reviews %} {% if review.book.id == book.id %}
+            <div class="book-detail-review">
+                <div class="rating">
+                    Rating:
+                    <span class="stars">{{ review.stars }}</span>
+                </div>
+
+                <div class="reviews">
+                    <p>
+                        <a href="{% url 'reviews:user_detail' review.reviewer.id %}">{{ review.reviewer.name }}</a> says: {{ review.review }}</p>
+
+                    <div class="row">
+                        <span class="col-6 timestamp">{{ review.created_at }}</span>
+                    </div>
+                </div>
+            </div>
+            {% endif %}{% endfor %}
+        </div>
+        {% endfor %}
+    </div>
+
+    <div class="col-4">
+        <h3>Other Books with Reviews:</h3>
+
+        <div class="col-12 scroll-box">
+            <ul>
+                {% for book in all_books %}
+                <li>
+                    <a href="{% url 'reviews:book_detail' book.id %}">{{book.title}}</a>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

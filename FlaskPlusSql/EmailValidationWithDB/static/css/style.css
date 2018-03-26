@@ -1,0 +1,29 @@
+h1,
+h2,
+h4 {
+    margin:1em 0;
+}
+
+div.bg-warning,
+div.bg-success {
+    margin: 1em 0;
+    padding:.5em;
+    border-radius: 5px;
+}
+
+#email-table {
+}
+
+#email-table thead {
+    color: #fff;
+    background-color:#333;
+}
+
+#email-table td.remove {
+    text-align: center;
+}
+
+#email-table td.remove a:link,
+#email-table td.remove a:visited {
+    color: red;
+}

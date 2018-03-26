@@ -1,0 +1,23 @@
+h1,
+h2 {
+    margin: 2em 0 1em 0;
+}
+
+table {
+    font-size: .85em;
+}
+
+thead {
+    background-color: #333;
+    color: #fff;
+}
+
+table.table td {
+    vertical-align: middle;
+}
+
+div.bg-warning {
+    margin: .25em;
+    padding: .5em;
+    border-radius: 5px;
+}

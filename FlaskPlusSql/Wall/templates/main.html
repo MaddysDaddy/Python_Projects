@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>The Wall</title>
+
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M"
+        crossorigin="anonymous">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css')}}">
+
+    <script src="https://use.fontawesome.com/03faeca722.js"></script>
+    <script src="{{ url_for('static', filename='js/jquery-3.2.1.min.js')}}"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1"
+        crossorigin="anonymous"></script>
+    <script src="{{ url_for('static', filename='js/main.js')}}"></script>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="/">The Wall</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <span class="logged ml-auto">You are logged in as {{ fullname }} </span>
+                <a href="/logout" class="btn btn-primary btn-logout">Logout</a>
+            </div>
+        </div>
+    </nav>
+    <div class="container">
+        <!-- <h2 class="welcome">Welcome {{ user }} you are logged in!</h2> -->
+        <div class="row">
+            <div class="col-8">
+                {% with messerrors = get_flashed_messages(category_filter=['messerror']) %} {% if messerrors %} {% for messerror in messerrors
+                %}
+                <div class="bg-warning reg">
+                    <i class="fa fa-exclamation-triangle" aria-hidden="true"></i> {{ messerror }}
+                </div>
+                {% endfor %} {% endif %} {% endwith %}
+                <form action="/message" method="POST" id="message-form">
+                    <div class="form-group">
+                        <label for="message">Post a message:</label>
+                        <textarea name="message" class="form-control" id="message" cols="30" rows="5"></textarea>
+                        <button class="btn btn-primary">Post</button>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+
+        {% for post in posts %}
+        <div class="row" id="post{{ post['id'] }}">
+            <div class="col-md-8 post-message">
+                <h4>{{ post['fullname'] }}</h4>
+                <span class="message-created-time">{{ post['created_at'].strftime('%m-%d-%Y %I:%M %p') }}</span>
+                <p>{{ post['message'] }}</p>
+                <div class="comment-edit">
+
+                    <a href="/comment/{{ post['id'] }}" class="comment">Comment</a>
+
+                    {% if session['user'][0]['id'] == post['user_id'] %}{% if post['created_at'] > timelimit %} |
+                    <a href="/delete/{{ post['id'] }}" class="delete">Delete Message</a>
+                    {% endif %} {% endif %}
+                </div>
+
+                <div class="comment-form">
+                    <form action="/comment/{{ post['id'] }}" method='POST'>
+                        <div class="form-group">
+                            <textarea name="comment" id="" cols="30" rows="4" class="form-control"></textarea>
+                        </div>
+                        <button class="btn btn-default" type="submit">Comment</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        {% for comment in comments %} {% if comment['message_id'] == post['id'] %}
+        <div class="row">
+            <div class="col-8">
+                <div class="row justify-content-end">
+                    <div class="col-9 comment">
+                        <span>{{ comment['fullname'] }}</span> -
+                        <span class="comment-time">{{ comment['created_at'].strftime('%m-%d-%Y %H:%M:%S') }}</span>
+                        <p>{{ comment['comment'] }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endif %} {% endfor %} {% endfor %} {% with deleteErrors = get_flashed_messages(category_filter=['deleteError']) %} {%
+        if deleteErrors %}{% for deleteError in deleteErrors %}
+        <script>
+            alert('{{ deleteError }}');
+        </script>
+        {% endfor %}{% endif %}{% endwith %}
+
+    </div>
+</body>
+
+</html>

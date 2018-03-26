@@ -1,0 +1,33 @@
+{% extends 'book_reviews/base.html' %}{% block content %}
+<h2>User Alias: {{ user.alias }}</h2>
+<table class="table">
+    <tr>
+        <td>Name:</td>
+        <td>{{ user.name }}</td>
+    </tr>
+
+    <tr>
+        <td>Email:</td>
+        <td>{{ user.email }}</td>
+    </tr>
+
+    <tr>
+        <td>Total Reviews:</td>
+        <td>{{ total_reviews }}</td>
+    </tr>
+</table>
+
+<div class="row">
+    <div class="col-12">
+        <p>Posted reviews on the following books:</p>
+
+        <ul>
+            {% for review in reviews %}
+            <li>
+                <a href="/books/{{ review.book.id }}">{{ review.book.title }}</a>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>
+{% endblock %}

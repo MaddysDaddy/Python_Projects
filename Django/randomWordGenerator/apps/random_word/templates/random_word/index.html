@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Random Word</title>
+
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'random_word/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'random_word/css/style.css' %}">
+
+    <script src="{% static 'random_word/js/jquery-3.2.1.min.js' %}"></script>
+    <script src="{% static 'random_word/js/main.js' %}"></script>
+
+</head>
+
+<body>
+
+    <div class="flex">
+        <div class="container">
+            <h1>Random String Generator</h1>
+
+            <div class="row justify-content-center">
+                <div class="col-md-8">
+                    <div class="form-group">
+                        <input type="text" id="rand-string" class="form-control" value="{{ word }}" readonly>
+                    </div>
+                    <form action="/random" method="POST">
+                        {% csrf_token %}
+                        <div class="row justify-content-center">
+                            <button class="btn btn-primary">Generate String</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>

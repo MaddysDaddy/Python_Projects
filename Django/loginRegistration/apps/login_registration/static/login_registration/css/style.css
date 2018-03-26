@@ -1,0 +1,29 @@
+h2 {
+    margin-top: 2em;
+}
+
+h2.welcome {
+    text-align: center;
+}
+
+div.reg {
+    padding: .5em;
+    border-radius: 5px;
+    margin: .5em 0;
+}
+
+span.logged {
+    font-style: italic;
+    font-size: 85%;
+    display: inline-block;
+    color: #fff;
+}
+
+.btn-logout {
+    margin-left: 1em;
+}
+
+div.login-error {
+    text-align: right;
+    font-style: italic;
+}

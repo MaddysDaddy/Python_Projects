@@ -1,0 +1,87 @@
+h2 {
+    margin-top: 2em;
+}
+
+h2.welcome {
+    text-align: center;
+}
+
+div.reg {
+    padding: .5em;
+    border-radius: 5px;
+    margin: .5em 0;
+}
+
+span.logged {
+    font-style: italic;
+    font-size: 85%;
+    display: inline-block;
+    color: #fff;
+}
+
+.btn-logout {
+    margin-left: 1em;
+}
+
+div.login-error {
+    text-align: right;
+    font-style: italic;
+}
+
+form#message-form {
+    margin-top: 2em;
+}
+
+form#message-form textarea {
+    resize: none;
+    border-radius: 5px;
+}
+
+form#message-form button {
+    margin-top: 1em;
+}
+
+div.post-message {
+    background-color: #eaeaea;
+    padding: 1em;
+    border-radius: 8px;
+    margin-bottom: 1em;
+}
+
+div.post-message span {
+    font-size: 70%;
+    font-weight: lighter;
+    display: block;
+}
+
+div.comment-edit a:link,
+div.comment-edit a:visited {
+    font-size: 85%;
+    font-weight: lighter;
+}
+
+div.comment-form {
+    display: none;
+}
+
+div.comment-form textarea {
+    border-radius: 5px;
+    resize: none;
+}
+
+div.comment {
+    background-color: #aeaeae;
+    padding: 1em;
+    border-radius: 5px;
+    overflow: hidden;
+    margin-bottom: 1em;
+}
+
+div.comment span {
+    font-weight: bold;
+}
+
+div.comment span.comment-time {
+    font-weight: lighter;
+    font-size: 70%;
+}

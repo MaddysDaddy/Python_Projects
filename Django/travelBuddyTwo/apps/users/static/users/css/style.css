@@ -1,0 +1,46 @@
+nav {
+    margin-bottom: 2em;
+}
+
+table.destination-table {
+    margin-bottom: 2em;
+}
+
+table.detail-table {
+    margin-bottom: 2em;
+}
+
+table.detail-table tr,
+table.detail-table td {
+    border: none;
+}
+
+.navbar-nav {
+    width: 100%;
+}
+
+.navbar-nav li {
+    margin-left: auto;
+}
+
+ul.error-messages {
+    list-style: none;
+    padding-left: 15px;
+    margin: 0;
+}
+
+li.error-msg {
+    padding: .75em;
+    border-radius: 5px;
+    margin-bottom: 1em;
+}
+
+h2.welcome-msg {
+    margin-bottom: 1em;
+}
+
+.subtext {
+    font-size: 75%;
+    font-style: italic;
+    color: #aeaeae;
+}

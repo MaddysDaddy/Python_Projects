@@ -1,0 +1,83 @@
+nav#main-nav {
+    margin-bottom: 2em;
+}
+
+ul.navbar-nav {
+    margin-left: auto;
+}
+
+.welcome-msg {
+    margin: 1em 0 3em 0;
+}
+
+ul.error-messages {
+    list-style: none;
+    padding-left: 15px;
+    margin: 0;
+}
+
+li.error-msg {
+    padding: .75em;
+    border-radius: 5px;
+    margin-bottom: 1em;
+}
+
+div.book {
+    margin-bottom: 1em;
+    padding: 1em 0;
+    border-bottom: 1px solid #aeaeae;
+}
+
+div.book:last-child {
+    border-bottom: none;
+}
+
+div.reviews-main {
+    margin-top: 2em;
+}
+
+div.reviews-main div.col-8 {
+    padding-right: 3em;
+}
+
+div.book-detail-review {
+    margin: 1em 0;
+    padding: 1em 0;
+    border-bottom: 1px solid #eaeaea;
+}
+
+div.book-detail-review:last-child {
+    border-bottom: 0;
+}
+
+div.scroll-box {
+    border: 1px solid #aeaeae;
+    height: 150px;
+    border-radius: 5px;
+    padding: 1em;
+    overflow: scroll;
+}
+
+div.scroll-box ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.fa-star {
+    color: goldenrod;
+}
+
+form.delete-button {
+    display: inline-block;
+    margin-left: auto;
+}
+
+form.delete-button span {
+    display: inline-block;
+}
+
+span.timestamp {
+    font-size: 75%;
+    color: #aeaeae;
+}

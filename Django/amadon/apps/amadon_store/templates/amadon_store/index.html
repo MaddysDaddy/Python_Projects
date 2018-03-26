@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Amadon</title>
+
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'amadon_store/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'amadon_store/css/style.css' %}">
+
+    <script src="{% static 'amadon_store/js/jquery-3.2.1.min.js' %}"></script>
+    <script src="{% static 'amadon_store/js/main.js' %}"></script>
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="title">
+            <h1>Welcome to Amadon</h1>
+        </div>
+
+        <div class="row">
+            <div class="col-12">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Item</th>
+                            <th>Price</th>
+                            <th>Quantity</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for item in items %}
+                        <tr>
+                            <td>{{ item.item }}</td>
+                            <td>{{ item.price }}</td>
+                            <td>
+                                <select class="form-control quantity" name="quantity-select-{{ item.id }}" id="{{ item.id }}">
+
+                                </select>
+                            </td>
+                            <td>
+                                <form action="/purchase" method="POST">
+                                    {% csrf_token %}
+                                    <input type="hidden" class="form-control" name="item" value="{{ item.id }}">
+                                    <input type="hidden" class="form-control q" name="quantity" value="0">
+                                    <button class="btn btn-primary">Buy</button>
+                                </form>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+
+                </table>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>

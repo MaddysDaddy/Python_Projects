@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Session Words</title>
+
+    {% load static %} {% load static %}
+    <link rel="stylesheet" href="{% static 'surveys/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'surveys/css/style.css' %}">
+
+    <script src="{% static 'surveys/js/jquery-3.2.1.min.js' %}"></script>
+    <script src="{% static 'surveys/js/main.js' %}"></script>
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="row main">
+            <!-- FIRST COLUMN -->
+            <div class="col-6">
+                <div class="row">
+                    <div class="col-12">
+                        <form action="/session_words/add_word" method="POST">
+                            {% csrf_token %}
+                            <div class="form-group">
+                                <label for="word" id="form-title">Add a new word:</label>
+                                <input type="text" class="form-control" name="word">
+                            </div>
+
+                            <fieldset class="form-group">
+                                <legend>Choose a color:</legend>
+                                <div class="radio">
+                                    <label>
+                                        <input type="radio" name="color" value="red"> Red</label>
+                                </div>
+                                <div class="radio">
+                                    <label>
+                                        <input type="radio" name="color" value="green"> Green</label>
+                                </div>
+                                <div class="radio disabled">
+                                    <label>
+                                        <input type="radio" name="color" value="blue"> Blue</label>
+                                </div>
+                            </fieldset>
+
+                            <div class="form-check">
+                                <label for="big" class="form-check-label">
+                                    <input type="checkbox" name="big" id="big" class="form-check-input"> show in BIG fonts!</label>
+                            </div>
+
+                            <button class="btn btn-primary" type="submit">Add to Session</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SECOND COLUMN -->
+            <div class="col-6">
+                <div class="row">
+                    <div class="col-12 clear-session">
+                        <a href="/session_words/clear" class="btn btn-danger">Clear Session</a>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 word-list">
+                        {% for word in word_list %}
+                        <div class="d-flex flex-row">
+                            <div class="word-list-col">
+                                <span class="{{ word.color }} {{ word.big }}"> {{ word.word }}</span>
+                            </div>
+                            <div class="word-list-col justify-content-end">
+                                <span class="created">{{ word.created_at }}</span>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</body>
+
+</html>

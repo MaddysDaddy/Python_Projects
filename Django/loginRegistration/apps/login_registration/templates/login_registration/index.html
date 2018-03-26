@@ -1,0 +1,66 @@
+{% extends 'login_registration/base.html' %}{% block content%}
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+        <a class="navbar-brand" href="#">Django Login Registration</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+            aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+            <form class="form-inline my-2 my-lg-0 ml-auto" action="/login" method="POST">
+                {% csrf_token %}
+                <input class="form-control mr-sm-2" type="text" placeholder="Username" aria-label="Username" name="username" required>
+                <input class="form-control mr-sm-2" type="password" placeholder="Password" aria-label="Password" name="password" required>
+
+                <button class="btn btn-primary my-2 my-sm-0" type="submit">Login</button>
+            </form>
+
+        </div>
+    </div>
+</nav>
+<div class="container">
+    {% if messages %}{% for message in messages %}
+    <div class="login-error text-danger">
+        {{ message }}
+    </div>
+    {% endfor %}{% endif %}
+
+    <h2>Enter your info to register:</h2>
+    <div class="row">
+        <div class="col-8">
+
+            <form action="/register" method="POST">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="first_name">First Name:</label>
+                    <input type="text" class="form-control" name="first_name" id="first_name">
+                </div>
+
+                <div class="form-group">
+                    <label for="last_name">Last Name:</label>
+                    <input type="text" class="form-control" name="last_name" id="last_name">
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" class="form-control" name="email" id="email">
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Password:</label>
+                    <input type="password" class="form-control" name="password" id="password">
+                </div>
+
+                <div class="form-group">
+                    <label for="confirm-password">Confirm Password:</label>
+                    <input type="password" class="form-control" name="confirm-password" id="confirm-password">
+                </div>
+
+                <button class="btn btn-primary" type="submit">Register</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

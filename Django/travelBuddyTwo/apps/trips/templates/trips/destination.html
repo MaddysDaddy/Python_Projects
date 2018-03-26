@@ -1,0 +1,40 @@
+{% extends 'users/base.html' %}{% block content %}
+<div class="row">
+    <div class="col-12">
+        <h2 class="welcome-msg">{{ trip.destination }}</h2>
+    </div>
+</div>
+<div class="row">
+    <div class="col-6">
+        <table class="table detail-table">
+            <tr>
+                <td>Planned by:</td>
+                <td>{{ trip.planner.name }}</td>
+            </tr>
+            <tr>
+                <td>Description:</td>
+                <td>{{ trip.description }}</td>
+            </tr>
+            <tr>
+                <td>Travel Date From:</td>
+                <td>{{ trip.from_date }}</td>
+            </tr>
+            <tr>
+                <td>Travel Date To:</td>
+                <td>{{ trip.end_date }}</td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12">
+        <h4>Other user's joining the trip:</h4>
+        <ul>
+            {% for user in joined_users %}
+            <li>{{ user.name }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>
+{% endblock %}

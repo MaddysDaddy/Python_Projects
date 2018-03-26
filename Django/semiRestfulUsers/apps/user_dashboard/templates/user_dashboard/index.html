@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Users</title>
+
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'user_dashboard/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'user_dashboard/css/style.css' %}">
+
+    <script src="{% static 'user_dashboard/js/jquery-3.2.1.min.js' %}"></script>
+    <script src="{% static 'user_dashboard/js/main.js' %}"></script>
+
+
+</head>
+
+<body>
+
+    <div class="container">
+        <h1 class="title">Users</h1>
+
+        <table class="table table-striped">
+            <thead class="thead-dark">
+                <tr>
+                    <th>ID</th>
+                    <th>Full Name</th>
+                    <th>Email</th>
+                    <th>Created At</th>
+                    <th>Updated At</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for user in users %}
+                <tr>
+                    <td>{{ user.id }}</td>
+                    <td>
+                        <a href="/{{ user.id }}/show">{{ user.first_name }} {{ user.last_name }}</a>
+                    </td>
+                    <td>{{ user.email }}</td>
+                    <td>{{ user.created_at }}</td>
+                    <td>{{ user.updated_at }}</td>
+                    <td>
+                        <a href="/{{ user.id }}/show">Show</a> |
+                        <a href="/{{ user.id }}/edit">Edit</a> |
+                        <a href="/{{ user.id }}/delete">Delete</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <a href="/new" class="btn btn-default btn-primary">Add New User</a>
+    </div>
+
+</body>
+
+</html>

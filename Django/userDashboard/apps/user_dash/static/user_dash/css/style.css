@@ -1,0 +1,71 @@
+.navbar-nav {
+    width: 100%;
+}
+
+.navbar-nav li:last-child {
+    margin-left: auto;
+}
+
+div.jumbotron {
+    margin: 1em 0;
+}
+
+
+/* LOGIN PAGE STYLES */
+
+nav#main-nav {
+    margin-bottom: 2em;
+}
+
+form#login-form {
+    margin: 1em 0;
+}
+
+
+/* DETAILS PAGE STYLES */
+
+div.post {
+    background-color: #eaeaea;
+    border: 1px solid #aeaeae;
+    border-radius: 5px;
+    padding: 1em;
+    margin: .75em;
+}
+
+div.comment {
+    background-color: #fefefe;
+    border: 1px solid #aeaeae;
+    border-radius: 5px;
+    padding: 1em;
+    margin: .75em;
+}
+
+span.commenter {
+    font-size: 70%;
+    color: #aeaeae;
+    font-style: italic;
+}
+
+a.comment-link {
+    font-size: 70%;
+}
+
+div.comment-form-row {
+    display: none;
+    margin: .5em 0;
+}
+
+
+/* PROFILE PAGE STYLES */
+
+ul.error-messages {
+    list-style: none;
+    padding-left: 15px;
+    margin: 0;
+}
+
+li.error-msg {
+    padding: .75em;
+    border-radius: 5px;
+    margin-bottom: 1em;
+}
